@@ -15,15 +15,7 @@ inherit_mode:
 
 Naming/FileName:
   Exclude:
-    - 'r18n-core/lib/r18n-core/locales/*.rb'
-    - 'r18n-core/spec/locales/*.rb'
-    - '**/r18n-core.rb'
     - '**/r18n-rails.rb'
-    - '**/r18n-rails-api.rb'
-    - '**/r18n-desktop.rb'
-    - '**/r18n-desktop_spec.rb'
-    - '**/sinatra-r18n.rb'
-    - '**/sinatra-r18n_spec.rb'
 
 Style/AsciiComments:
   Enabled: false
@@ -50,7 +42,6 @@ Layout/LineLength:
 Metrics/BlockLength:
   Exclude:
     - '**/spec/**/*'
-    - 'benchmark/*'
 
 Style/NumericLiterals:
   Exclude:
@@ -61,41 +52,19 @@ Rails/RakeEnvironment:
 
 Rails/TimeZone:
   Exclude:
-    - benchmark/**/*
-    - r18n-core/**/*
-    - r18n-desktop/**/*
     ## https://github.com/rubocop-hq/rubocop-rails/issues/432
     - '**/*.gemspec'
-
-Rails/Date:
-  Exclude:
-    - r18n-core/**/*
-
-Rails/NegateInclude:
-  Exclude:
-    - benchmark/**/*
 
 # TODO: fix offenses and enable cops
 
 Metrics/AbcSize:
-  Enabled: false
-
-Metrics/ClassLength:
-  Enabled: false
-
-Metrics/CyclomaticComplexity:
-  Enabled: false
+  Exclude:
+    - 'lib/r18n-rails/hooks_helper.rb'
 
 Metrics/MethodLength:
-  Enabled: false
-
-Metrics/ParameterLists:
-  Enabled: false
-
-Metrics/PerceivedComplexity:
-  Enabled: false
+  Exclude:
+    - 'lib/r18n-rails/hooks_helper.rb'
 
 Style/Documentation:
-  Enabled: false
   Exclude:
-    - '**/spec/**/*'
+    - 'lib/r18n-rails/hooks_helper.rb'

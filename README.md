@@ -1,62 +1,15 @@
-# R18n
+# R18n for Rails
 
-[![Build Status](https://api.cirrus-ci.com/github/r18n/r18n.svg?branch=master)](https://cirrus-ci.com/github/r18n/r18n)
-[![Depfu](https://badges.depfu.com/badges/e168722276dfdd5e61368bbb6129e3f2/overview.svg)](https://depfu.com/github/r18n/r18n?project_id=6059)
+R18n-rails is a gem to add out-of-box [R18n](https://github.com/r18n/r18n) support to Rails I18n.
 
-R18n is an i18n tool to translate your Ruby application into several languages.
-It contains a core gem and out-of-box wrapper plugins for frameworks or
-environments (Rails, Sinatra, desktop).
+It is a wrapper for [R18n Rails API](https://github.com/r18n/r18n-rails-api)
+and [R18n core](https://github.com/r18n/r18n-core) libraries.
+See [R18n core documentation](https://github.com/r18n/r18n-core/blob/master/README.md)
+for more information.
 
-<a href="https://evilmartians.com/?utm_source=r18n">
-<img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54">
-</a>
+## Features
 
-## Quick Demo
-
-`i18n/en.yml`:
-
-```yaml
-user:
-  edit: Edit user
-  name: User name is %1
-  count: !!pl
-    1: There is 1 user
-    n: There are %1 users
-```
-
-`example.rb`:
-
-```ruby
-# Setup R18n (or just use out-of-box `r18n-rails` or `sinatra-r18n` gem)
-R18n.default_places = './i18n/'
-R18n.set('en')
-
-include R18n::Helpers
-
-# Use R18n
-t.user.edit         #=> "Edit user"
-t.user.name('John') #=> "User name is John"
-t.user.count(5)     #=> "There are 5 users"
-
-t.not.exists | 'default' #=> "default"
-t.not.exists.translated? #=> false
-
-l Time.now         #=> "2010-01-03 18:54"
-l Time.now, :human #=> "now"
-l Time.now, :full  #=> "3rd of January, 2010 18:54"
-```
-
-### Examples
-
-For Rails, Sinatra or desktop examples, see plugins documentations:
-* [`r18n-rails`](https://github.com/r18n/r18n/tree/master/r18n-rails)
-  for Ruby on Rails,
-* [`sinatra-r18n`](https://github.com/r18n/r18n/tree/master/sinatra-r18n)
-  for Sinatra,
-* [`r18n-desktop`](https://github.com/r18n/r18n/tree/master/r18n-desktop)
-  for shell/desktop applications.
-
-## R18n Features
+R18n for Rails is fully compatible with Rails I18n, and add extra features:
 
 * Nice Ruby-style syntax.
 * Filters.
@@ -65,213 +18,144 @@ For Rails, Sinatra or desktop examples, see plugins documentations:
 * Flexible locales.
 * Total flexibility.
 
-### Ruby-style Syntax
+See full features in [main README](https://github.com/r18n/r18n/blob/master/README.md).
 
-R18n use compact, explicit and ruby-style syntax.
+## How To
 
-Translations store in YAML with types:
+1.  Add `r18n-rails` gem to your `Gemfile`:
 
-```yaml
-user:
-  edit: Edit user
-  name: User name is %1
-  count: !!pl
-    1: There is 1 user
-    n: There are %1 users
-```
+     ```
+    gem 'r18n-rails'
+     ```
+    Now R18n will auto-detect user locales.
 
-To access translation you can call methods with the same names:
+2.  Define your way to set locale manually. R18n will find it in
+    `params[:locale]` or `session[:locale]`. Best way is a put optional
+    locale prefix to URLs:
 
-```ruby
-t.user.edit         #=> "Edit user"
-t.user.name('John') #=> "User name is John"
-t.user.count(5)     #=> "There are 5 users"
+    ```ruby
+    match ':controller/:action'
+    match ':locale/:controller/:action'
+    ```
 
-t.not.exists | 'default' #=> "default"
-t.not.exists.translated? #=> false
-```
+3.  Print available translations, to choose from them manually (and to help
+    search engines):
 
-If the translation key is the name of an Object method you can access it via
-hash index or use Rails I18n API in `r18n-rails`:
+    ```haml
+    %ul
+      - r18n.available_locales.each do |locale|
+        %li
+          %a( href="/#{locale.code}/" )= locale.title
+    ```
 
-```ruby
-t[:methods] #=> "Methods"
-```
+4.  Translations in I18n format are stored in
+    `config/locales/%{locale}.yml`:
 
-If you use `r18n-rails` plugin, you will have full compatibility with Rails I18n
-syntax.
+    ```yaml
+    en:
+      user:
+        name: "User name is %{name}"
+        count:
+          zero: "No users"
+          one:  "One user"
+          many: "%{count} users"
+    ```
+    Translations in R18n format go to `app/i18n/%{locale}.yml`:
 
-### Filters
+    ```yaml
+    user:
+      name: User name is %1
+      count: !!pl
+        0: No users
+        1: 1 user
+        n: '%1 users'
+    ```
 
-You can add filters for some YAML type. For example, we add custom filter to
-return different translation depend on user gender
-(it's actual for some languages).
+5.  Use translated messages in views. You can use Rails I18n syntax:
 
-```yaml
-log:
-  signup: !!gender
-    male: Он зарегистрировался
-    female: Она зарегистрировалась
-```
+    ```ruby
+    t 'user.name',  name: 'John'
+    t 'user.count', count: 5
+    ```
 
-In Rails application you can define filter in reloaded `app/i18n/filters.rb`:
+    or R18n syntax:
 
-```ruby
-R18n::Filters.add('gender') do |translation, config, user|
-  translation[user.gender]
-end
+    ```ruby
+    t.user.name(name: 'John') # for Rails I18n named variables
+    t.user.name('John')       # for R18n variables
+    t.user.count(5)
+    ```
 
-t.log.signup(user)
-```
+6.  Print dates and numbers in user's tradition:
 
-R18n already has filters for HTML escaping, Textile and Markdown:
+    ```ruby
+    l Date.today, :standard #=> "2009-12-20"
+    l Time.now,   :full     #=> "20th of December, 2009 12:00"
+    l 1234.5                #=> "1,234.5"
+    ```
 
-```yaml
-hi: !!markdown
-  Hi, **people**!
-greater: !!escape
-  1 < 2 is true
-```
+7.  Translate models. You can use `R18n::Translated` mixin for any Ruby class,
+    not only for ActiveRecord models
 
-```ruby
-i18n.hi      #=> "<p>Hi, <strong>people!</strong></p>"
-i18n.greater #=> "1 &lt; 2 is true"
-```
+    1.  Add to migration columns for each of the supported locales, named as
+        `%{name}_%{locale}`:
 
-You can also add filters for all returned translations or to issues, when
-translation can't be founded.
+        ```ruby
+        t.string :title_en
+        t.string :title_ru
 
-### Model Translation
+        t.string :text_en
+        t.string :text_ru
+        ```
 
-You can translate any class, including ORM models (`ActiveRecord`, `Sequel`,
-`Mongoid`, `MongoMapper`, `DataMapper` or others):
+    2.  Add `R18n::Translated` mixin to model:
 
-```ruby
-class Product < ActiveRecord::Base
-  include R18n::Translated
-  # Model has two normal properties: title_en and title_ru
-  translations :title
-end
+        ```ruby
+        class Post < ActiveRecord::Base
+          include R18n::Translated
+        ```
 
-R18n.set('en') # English
-product.title  #=> "Anthrax"
+    3.  Call `translations` method in model with all columns to be translated:
 
-R18n.set('ru') # Russian
-product.title  #=> "Сибирская язва"
-```
+        ```ruby
+        translations :title, :text
+        ```
+        Now model will have virtual methods `title`, `text`, `title=`
+        and `text=`, which will call `title_ru` or `title_en` and etc based
+        on current user locales.
 
-### Auto-detect User Locales
+8.  Download translations for Rails system messages (validation, etc) from
+    [svenfuchs/rails-i18n](https://github.com/svenfuchs/rails-i18n/tree/master/rails/locale)
+    and put them to `config/locales/` (because them use Rails I18n format).
 
-R18n has an agnostic core package and plugins with standard support for
-Sinatra and desktop applications. So for common cases you can use out-of-box
-gems with user locale auto-detect. For special cases you can use core gem and
-hack everything, that you want (see ["Total flexibility"](#total-flexibility)
-section).
+9.  Add your own translations filters to `app/i18n/filters.rb`:
 
-R18n automatically generate fallbacks for current user, based on
-user locales list from `HTTP_ACCEPT_LANGUAGE`, locale info (in some countries
-people know several languages), and default locale. For example, if user know
-Kazakh and German, R18n will try find translations in: Kazakh → German →
-Russian (second language in Kazakhstan) → English (default locale).
+    ```ruby
+    R18n::Filters.add('gender') do |translation, config, user|
+      translation[user.gender]
+    end
+    ```
 
-### Flexible Locales
+    And use in translations:
 
-R18n store separated business translations and locale information. So all
-locales (pluralization rules, time and number localization,
-some base translations) ship with core gem and can be used out-of-box:
+    ```yaml
+    log:
+      signup: !!gender
+        male: Он зарегистрировался
+        female: Она зарегистрировалась
+    ```
 
-For example, Russian has built-in different pluralization without any lambdas
-in YAML:
+    and application:
 
-```ruby
-t.user.count(1) #=> "1 пользователь"
-t.user.count(2) #=> "2 пользователя"
-t.user.count(5) #=> "5 пользователей"
-```
+    ```ruby
+    t.log.signup(user)
+    ```
 
-Locales are simple Ruby classes, so they are very flexible. For example,
-R18n ship with very perfection `full` time formatter:
+## License
 
-```ruby
-R18n.set('en')            # English
-l Time.now, :full         #=> "1st of December, 2011 12:00"
-l Time.now + 1.day, :full #=> "2nd of December, 2011 12:00"
+R18n is licensed under the GNU Lesser General Public License version 3.
+You can read it in LICENSE file or in [www.gnu.org/licenses/lgpl-3.0.html](https://www.gnu.org/licenses/lgpl-3.0.html).
 
-R18n.set('fr')            # French
-l Time.now, :full         #=> "1er décembre 2011 12:00"
-l Time.now + 1.day, :full #=> "2 décembre 2011 12:00"
-```
+## Author
 
-Years in Thailand are counted in the Buddhist Era. It's very easy for R18n:
-
-```ruby
-R18n.set('th')
-R18n.l Time.now, :full #=> "1 พฤศจิกายน, 2554 12:00"
-```
-
-### Total Flexibility
-
-R18n is very flexible and agnostic. For example, Rails I18n compatibility level
-is just few filters and custom loader.
-
-Translation variables and pluralization ("1 comment", "5 comments") are filters
-too, so you can disable, replace or cascade them. For example, you can use the
-"named variables filter" from the `r18n-rails-api` gem:
-
-```yaml
-greeting: "Hi, %{name}"
-```
-
-```ruby
-R18n::Filters.on(:named_variables)
-t.greeting(name: 'John') #=> "Hi, John"
-```
-
-Or you can add cascade filter on all untranslated messages to collect issues:
-
-```ruby
-R18n::Filters.add(::R18n::Untranslated) do |v, c, transl, untransl, path|
-  File.open('untranslated.list', 'w') { |io| io.puts(path) }
-end
-```
-
-R18n can load translations from anywhere, not just from YAML files. You just
-need to create loader object with 2 methods: `available` and `load`:
-
-```ruby
-class DBLoader
-  def available
-    Translation.all.map(&:locale)
-  end
-  def load(locale)
-    Translation.find_by_locale(locale).to_hash
-  end
-end
-
-R18n.default_places = DBLoader.new
-R18n.set('en') # Load English messages from DB
-```
-
-You can also set several loaders to merge translations from different sources:
-
-```ruby
-R18n.default_places = [DBLoader.new, 'path/to/yaml']
-```
-
-Also you can use several I18n object in program. For example, to load different
-translations for plugin:
-
-```ruby
-plugin_i18n = R18n::I18n.new(locales, plugin_i18n_places)
-plugin_i18n.t.message.hellow
-```
-
-## Services
-
-* [Crowdin](https://crowdin.com/) — supports all of R18n, including
-  pluralization, filters, etc.
-* [Localeapp](https://www.localeapp.com/) – Locale helps content owners and
-  translators work together, so Rails developers are free to write more code.
-* [WebTranslateIt](https://webtranslateit.com/) – web service to translate
-  your app. It allows your customer without programming skills help you
-  with translations.
+Andrey “A.I.” Sitnik [andrey@sitnik.ru](mailto:andrey@sitnik.ru)
