@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.5'
 
   s.add_dependency 'r18n-rails-api', '~> 5.0'
+  s.add_dependency 'rails', '>= 5.0', '< 7'
 
   s.add_development_dependency 'pry-byebug', '~> 3.9'
 
@@ -36,4 +37,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rubocop-rake', '~> 0.5.1'
 
   s.add_development_dependency 'rspec', '~> 3.10'
+  s.add_development_dependency 'rspec-rails', '~> 4.0'
+  s.add_development_dependency 'sqlite3', '~> 1.4'
 end
