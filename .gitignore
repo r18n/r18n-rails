@@ -3,6 +3,7 @@
 
 pkg/
 log/
+coverage/
 
 .bundle
 Gemfile.lock
