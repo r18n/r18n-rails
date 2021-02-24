@@ -1,5 +1,12 @@
 # R18n for Rails
 
+[![Cirrus CI - Base Branch Build Status](https://img.shields.io/cirrus/github/r18n/r18n-rails?style=flat-square)](https://cirrus-ci.com/github/r18n/r18n-rails)
+[![Codecov branch](https://img.shields.io/codecov/c/github/r18n/r18n-rails/master.svg?style=flat-square)](https://codecov.io/gh/r18n/r18n-rails)
+[![Code Climate](https://img.shields.io/codeclimate/maintainability/r18n/r18n-rails.svg?style=flat-square)](https://codeclimate.com/github/r18n/r18n-rails)
+[![Depfu](https://img.shields.io/depfu/r18n/r18n-rails?style=flat-square)](https://depfu.com/repos/github/r18n/r18n-rails)
+[![License](https://img.shields.io/github/license/r18n/r18n-rails.svg?style=flat-square)](LICENSE)
+[![Gem](https://img.shields.io/gem/v/r18n-rails.svg?style=flat-square)](https://rubygems.org/gems/r18n-rails)
+
 R18n-rails is a gem to add out-of-box [R18n](https://github.com/r18n/r18n) support to Rails I18n.
 
 It is a wrapper for [R18n Rails API](https://github.com/r18n/r18n-rails-api)
