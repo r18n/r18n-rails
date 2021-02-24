@@ -6,7 +6,7 @@
   bundle_cache:
     folder: vendor/bundle
     fingerprint_script:
-      - echo $CIRRUS_TASK_NAME:$CIRRUS_OS
+      - echo $CIRRUS_OS
       - ruby -v
       - cat Gemfile
       - cat *.gemspec
@@ -20,7 +20,7 @@ remark_task:
   node_modules_cache:
     folder: node_modules
     fingerprint_script:
-      - echo $CIRRUS_TASK_NAME:$CIRRUS_OS
+      - echo $CIRRUS_OS
       - node -v
       - cat package.json
     populate_script: yarn install
