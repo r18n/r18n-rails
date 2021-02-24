@@ -1,6 +1,7 @@
 .ruby: &ruby
   env:
     ## https://github.com/docker-library/ruby/issues/45
+    ## It's for Rails: https://cirrus-ci.com/build/4950326760439808
     LANG: C.UTF-8
   bundle_cache:
     folder: vendor/bundle
