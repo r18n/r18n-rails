@@ -2,6 +2,22 @@
 
 ## Unreleased
 
+## 5.0.0 (Warszawa) (2021-03-04)
+
+* Take out `r18n-rails` gem from mono-repository.
+* Drop Ruby 2.4 support.
+* Support Ruby 3.
+* Avoid Ruby 4 in gem specs.
+* Add metadata to gem specs.
+* Add Alexander Popov as a gem author.
+* Replace `rake` with `toys`.
+* Add Codecov and SimpleCov.
+* Update RuboCop, its configuration, and resolve new offenses.
+* Add badges into README.
+
+All core changes now check in [the `r18n-core` repository](https://github.com/r18n/r18n-core)
+and [the `r18n-rails-api` repository](https://github.com/r18n/r18n-rails-api).
+
 ## 4.0.0 (Santiago)
 
 * Drop Ruby 2.3 support (by Alexander Popov).
