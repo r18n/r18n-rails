@@ -20,6 +20,9 @@
 require 'r18n-core'
 require 'r18n-rails-api'
 
+require 'rails'
+require 'action_controller'
+
 require_relative 'r18n-rails/helpers'
 require_relative 'r18n-rails/hooks_helper'
 require_relative 'r18n-rails/translated'
