@@ -24,18 +24,22 @@ Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
 Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
-Layout/MultilineArrayBraceLayout:
-  EnforcedStyle: new_line
-Layout/FirstArrayElementIndentation:
-  EnforcedStyle: consistent
 Layout/FirstArgumentIndentation:
   EnforcedStyle: consistent
-Layout/FirstArrayElementLineBreak:
-  Enabled: true
-Layout/FirstMethodArgumentLineBreak:
-  Enabled: true
+Layout/FirstParameterIndentation:
+  EnforcedStyle: consistent
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+Layout/MultilineArrayBraceLayout:
+  EnforcedStyle: new_line
+Layout/MultilineHashBraceLayout:
+  EnforcedStyle: new_line
 Layout/LineLength:
   Max: 100
 
