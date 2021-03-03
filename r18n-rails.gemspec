@@ -42,6 +42,9 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'pry-byebug', '~> 3.9'
 
+  s.add_development_dependency 'gem_toys', '~> 0.7.1'
+  s.add_development_dependency 'toys', '~> 0.11.0'
+
   s.add_development_dependency 'rubocop', '~> 1.6'
   s.add_development_dependency 'rubocop-performance', '~> 1.9'
   s.add_development_dependency 'rubocop-rails', '~> 2.9'

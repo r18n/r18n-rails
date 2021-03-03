@@ -1,5 +1,7 @@
 # Change Log
 
+## Unreleased
+
 ## 4.0.0 (Santiago)
 
 * Drop Ruby 2.3 support (by Alexander Popov).
