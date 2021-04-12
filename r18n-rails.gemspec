@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.5', '< 4'
 
   s.add_dependency 'r18n-rails-api', '~> 5.0'
-  s.add_dependency 'rails', '>= 5.0', '< 7'
+  s.add_dependency 'rails', '6.1.3.1'
 
   s.add_development_dependency 'pry-byebug', '~> 3.9'
 
