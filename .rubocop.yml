@@ -54,6 +54,10 @@ Style/NumericLiterals:
 Rails/RakeEnvironment:
   Enabled: false
 
+## https://github.com/rubocop/rubocop-rails/issues/484
+Rails/EnvironmentVariableAccess:
+  AllowReads: true
+
 
 # TODO: fix offenses and enable cops
 
