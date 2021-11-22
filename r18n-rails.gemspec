@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
   s.homepage = github_uri
 
   s.metadata = {
+    'rubygems_mfa_required' => 'true',
     'bug_tracker_uri' => "#{github_uri}/issues",
     'changelog_uri' => "#{github_uri}/blob/#{s.version}/ChangeLog.md",
     'documentation_uri' => "http://www.rubydoc.info/gems/#{s.name}/#{s.version}",
