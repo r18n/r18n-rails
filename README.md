@@ -1,7 +1,7 @@
 # R18n for Rails
 
 [![Cirrus CI - Base Branch Build Status](https://img.shields.io/cirrus/github/r18n/r18n-rails?style=flat-square)](https://cirrus-ci.com/github/r18n/r18n-rails)
-[![Codecov branch](https://img.shields.io/codecov/c/github/r18n/r18n-rails/master.svg?style=flat-square)](https://codecov.io/gh/r18n/r18n-rails)
+[![Codecov branch](https://img.shields.io/codecov/c/github/r18n/r18n-rails/main.svg?style=flat-square)](https://codecov.io/gh/r18n/r18n-rails)
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/r18n/r18n-rails.svg?style=flat-square)](https://codeclimate.com/github/r18n/r18n-rails)
 [![Depfu](https://img.shields.io/depfu/r18n/r18n-rails?style=flat-square)](https://depfu.com/repos/github/r18n/r18n-rails)
 [![License](https://img.shields.io/github/license/r18n/r18n-rails.svg?style=flat-square)](LICENSE)
@@ -11,7 +11,7 @@ R18n-rails is a gem to add out-of-box [R18n](https://github.com/r18n/r18n) suppo
 
 It is a wrapper for [R18n Rails API](https://github.com/r18n/r18n-rails-api)
 and [R18n core](https://github.com/r18n/r18n-core) libraries.
-See [R18n core documentation](https://github.com/r18n/r18n-core/blob/master/README.md)
+See [R18n core documentation](https://github.com/r18n/r18n-core/blob/main/README.md)
 for more information.
 
 ## Features
@@ -25,7 +25,7 @@ R18n for Rails is fully compatible with Rails I18n, and add extra features:
 * Flexible locales.
 * Total flexibility.
 
-See full features in [main README](https://github.com/r18n/r18n/blob/master/README.md).
+See full features in [main README](https://github.com/r18n/r18n/blob/main/README.md).
 
 ## How To
 
@@ -132,7 +132,7 @@ See full features in [main README](https://github.com/r18n/r18n/blob/master/READ
         on current user locales.
 
 8.  Download translations for Rails system messages (validation, etc) from
-    [svenfuchs/rails-i18n](https://github.com/svenfuchs/rails-i18n/tree/master/rails/locale)
+    [svenfuchs/rails-i18n](https://github.com/svenfuchs/rails-i18n/tree/main/rails/locale)
     and put them to `config/locales/` (because them use Rails I18n format).
 
 9.  Add your own translations filters to `app/i18n/filters.rb`:
