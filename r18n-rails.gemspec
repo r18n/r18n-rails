@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
     'source_code_uri' => github_uri
   }
 
-  s.required_ruby_version = '>= 2.5', '< 4'
+  s.required_ruby_version = '>= 2.6', '< 4'
 
   s.add_dependency 'r18n-rails-api', '~> 5.0'
   s.add_dependency 'rails', '>= 5.0', '< 8'
