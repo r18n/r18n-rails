@@ -38,6 +38,10 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.6', '< 4'
 
+  ## Without it there are fails for Ruby >= 3.1
+  ## https://www.ruby-lang.org/en/news/2021/12/25/ruby-3-1-0-released/
+  s.add_dependency 'net-smtp', '~> 0.3.1'
+
   s.add_dependency 'r18n-rails-api', '~> 5.0'
   s.add_dependency 'rails', '>= 5.0', '< 8'
 
