@@ -11,4 +11,5 @@ App::Application.configure do
   config.action_controller.allow_forgery_protection = false
   config.active_support.deprecation                 = :stderr
   config.action_mailer.delivery_method              = :test
+  config.active_record.legacy_connection_handling   = false
 end
