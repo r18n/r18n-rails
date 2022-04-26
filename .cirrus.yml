@@ -49,7 +49,6 @@ test_task:
   <<: *ruby
   container:
     matrix:
-      image: ruby:2.6
       image: ruby:2.7
       image: ruby:3.0
       image: ruby:3.1
