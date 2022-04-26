@@ -55,7 +55,7 @@ if defined? ActionMailer
 end
 
 ActiveSupport.on_load(:after_initialize) do
-  env = ENV['LANG']
+  env = ENV.fetch('LANG', nil)
   env = env.split('.').first if env
   R18n::I18n.default = I18n.default_locale.to_s
   locales = [env, I18n.default_locale.to_s]
