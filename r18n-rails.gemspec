@@ -43,7 +43,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'net-smtp', '~> 0.3.1'
 
   s.add_dependency 'r18n-rails-api', '~> 5.0'
-  s.add_dependency 'rails', '>= 5.0', '< 8'
+  s.add_dependency 'rails', '6.0.5'
 
   s.add_development_dependency 'pry-byebug', '~> 3.9'
 
