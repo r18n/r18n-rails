@@ -31,7 +31,7 @@ require_relative 'r18n-rails/filters'
 R18n.default_places { [Rails.root.join('app/i18n'), R18n::Loader::Rails.new] }
 
 ActionController::Base.helper(R18n::Rails::Helpers)
-ActionController::Base.include R18n::Rails::HooksHelper::ForController
+ActiveSupport.on_load(:action_controller) { include R18n::Rails::HooksHelper::ForController }
 
 if ActionController::Base.respond_to? :before_action
   ActionController::Base.send(:before_action, :set_r18n)
@@ -43,7 +43,7 @@ end
 
 if defined? ActionMailer
   ActionMailer::Base.helper(R18n::Rails::Helpers)
-  ActionMailer::Base.include R18n::Rails::HooksHelper::ForMailer
+  ActiveSupport.on_load(:action_mailer) { include R18n::Rails::HooksHelper::ForMailer }
 
   if ActionMailer::Base.respond_to? :before_action
     ActionMailer::Base.send(:before_action, :set_r18n)
