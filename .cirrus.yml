@@ -3,6 +3,7 @@
     ## https://github.com/docker-library/ruby/issues/45
     ## It's for Rails: https://cirrus-ci.com/build/4950326760439808
     LANG: C.UTF-8
+
   bundle_cache:
     folder: vendor/bundle
     fingerprint_script:
@@ -10,6 +11,7 @@
       - ruby -v
       - cat Gemfile
       - cat *.gemspec
+
   install_script:
     - gem install bundler
     - bundle config set --local path 'vendor/bundle'
@@ -27,6 +29,7 @@ env:
 remark_task:
   container:
     image: node:latest
+
   node_modules_cache:
     folder: node_modules
     fingerprint_script:
@@ -34,24 +37,31 @@ remark_task:
       - node -v
       - cat package.json
     populate_script: npm install
+
   remark_script: npm run remark
 
 rubocop_task:
   <<: *ruby
+
   container:
     image: ruby:latest
+
   rubocop_script: bundle exec rubocop
 
 test_task:
   depends_on:
     - remark
     - rubocop
+
   <<: *ruby
+
   container:
     matrix:
       image: ruby:2.7
       image: ruby:3.0
       image: ruby:3.1
+
   environment:
     CODECOV_TOKEN: ENCRYPTED[24be0cc59e3e223c64095fe56cf67cd171d27df2f8013e806e5e5a9a7479f841133ec58936a42b336d8e4b382e68c301]
+
   test_script: bundle exec rspec
