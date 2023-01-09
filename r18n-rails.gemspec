@@ -57,7 +57,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'rspec', '~> 3.10'
   s.add_development_dependency 'rspec-rails', '~> 6.0'
-  s.add_development_dependency 'simplecov', '~> 0.21.0'
+  s.add_development_dependency 'simplecov', '~> 0.22.0'
   s.add_development_dependency 'simplecov-cobertura', '~> 2.1'
   s.add_development_dependency 'sqlite3', '~> 1.4'
 end
