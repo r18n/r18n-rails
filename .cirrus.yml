@@ -61,7 +61,15 @@ test_task:
       image: ruby:3.0
       image: ruby:3.1
 
-  environment:
-    CODECOV_TOKEN: ENCRYPTED[24be0cc59e3e223c64095fe56cf67cd171d27df2f8013e806e5e5a9a7479f841133ec58936a42b336d8e4b382e68c301]
-
   test_script: bundle exec rspec
+
+  codecov_uploader_cache:
+    folder: codecov
+    fingerprint_script:
+      - curl --no-progress-meter https://uploader.codecov.io/latest/linux/codecov.SHA256SUM
+    populate_script:
+      - mkdir -p codecov
+      - curl https://uploader.codecov.io/latest/linux/codecov -o codecov/uploader
+      - chmod +x codecov/uploader
+
+  codecov_script: codecov/uploader
