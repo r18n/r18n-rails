@@ -36,7 +36,7 @@ module R18n
         # Load all ruby files from `app/i18n` and remember loaded filters.
         def load!
           @loaded = R18n::Filters.listen do
-            Pathname.glob(path.join('**/*.rb').to_s) { |i| load i.to_s; }
+            Pathname.glob(path.join('**/*.rb').to_s) { |i| load i.to_s }
           end.map(&:name)
         end
 
