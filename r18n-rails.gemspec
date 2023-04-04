@@ -50,7 +50,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'gem_toys', '~> 0.12.1'
   s.add_development_dependency 'toys', '~> 0.14.2'
 
-  s.add_development_dependency 'rubocop', '~> 1.48.0'
+  s.add_development_dependency 'rubocop', '~> 1.49.0'
   s.add_development_dependency 'rubocop-performance', '~> 1.9'
   s.add_development_dependency 'rubocop-rails', '~> 2.18.0'
   s.add_development_dependency 'rubocop-rake', '~> 0.6.0'
