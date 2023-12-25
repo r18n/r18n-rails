@@ -12,7 +12,7 @@ group :development do
 end
 
 group :lint do
-  gem 'rubocop', '~> 1.57.0'
+  gem 'rubocop', '~> 1.59.0'
   gem 'rubocop-performance', '~> 1.9'
   gem 'rubocop-rails', '~> 2.23.0'
   gem 'rubocop-rake', '~> 0.6.0'
