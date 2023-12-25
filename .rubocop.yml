@@ -2,7 +2,7 @@ require:
   - rubocop-performance
   - rubocop-rails
   - rubocop-rake
-  # - rubocop-rspec
+  - rubocop-rspec
 
 AllCops:
   TargetRubyVersion: 3.0
@@ -58,6 +58,8 @@ Rails/RakeEnvironment:
 Rails/EnvironmentVariableAccess:
   AllowReads: true
 
+RSpec/NestedGroups:
+  Enabled: false
 
 # TODO: fix offenses and enable cops
 
