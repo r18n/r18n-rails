@@ -24,7 +24,7 @@ group :test do
   gem 'rspec-rails', '~> 6.0'
   gem 'simplecov', '~> 0.22.0'
   gem 'simplecov-cobertura', '~> 2.1'
-  gem 'sqlite3', '~> 1.4'
+  gem 'sqlite3', '~> 2.1'
 end
 
 gem 'r18n-core', github: 'r18n/r18n-core'
