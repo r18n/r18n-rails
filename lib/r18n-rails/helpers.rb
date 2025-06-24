@@ -38,7 +38,7 @@ module R18n
         if params.empty?
           r18n.t
         else
-          super(*params)
+          super
         end
       end
       alias translate t
@@ -50,7 +50,7 @@ module R18n
       #   l Time.now, :human         # R18n style
       def l(obj, *args, **kwargs)
         if args.empty? || kwargs.any?
-          super(obj, *args, **kwargs)
+          super
         else
           r18n.l(obj, *args, now: Time.zone.now, **kwargs)
         end
