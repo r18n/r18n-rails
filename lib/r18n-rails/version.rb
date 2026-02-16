@@ -2,6 +2,6 @@
 
 module R18n
   module Rails
-    VERSION = '5.0.0'
+    VERSION = '6.0.0'
   end
 end
