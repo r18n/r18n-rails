@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
     'source_code_uri' => github_uri
   }
 
-  s.required_ruby_version = '>= 3.0', '< 4'
+  s.required_ruby_version = '>= 3.2', '< 4'
 
   ## Without it there are fails for Ruby >= 3.1
   ## https://www.ruby-lang.org/en/news/2021/12/25/ruby-3-1-0-released/
