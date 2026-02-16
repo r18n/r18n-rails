@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
     'source_code_uri' => github_uri
   }
 
-  s.required_ruby_version = '>= 3.2', '< 4'
+  s.required_ruby_version = '>= 3.2', '< 5'
 
   s.add_dependency 'net-smtp', '~> 0.5.1'
 
