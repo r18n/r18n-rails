@@ -23,7 +23,7 @@ group :test do
   gem 'rspec', '~> 3.10'
   gem 'rspec-rails', '~> 8.0'
   gem 'simplecov', '~> 0.22.0'
-  gem 'simplecov-cobertura', '~> 2.1'
+  gem 'simplecov-cobertura', '~> 3.1'
   gem 'sqlite3', '~> 2.9'
 end
 
