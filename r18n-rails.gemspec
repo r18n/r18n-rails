@@ -40,6 +40,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'net-smtp', '~> 0.5.1'
 
-  s.add_dependency 'r18n-rails-api', '~> 5.0'
+  s.add_dependency 'r18n-rails-api', '~> 6.0'
   s.add_dependency 'rails', '>= 6.1', '< 9'
 end
